@@ -1,6 +1,5 @@
 const tablename = 'Menu';
 const knex = require('./connection');
-const jimp = require("jimp");
 
 // public
 exports.data = getData();
