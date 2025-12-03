@@ -19,6 +19,10 @@
   app.get('/', (req, res) => {
     res.send('Welcome to the API!');
   });
+
+  const usersRouter = require('./users'); // Import your user router
+
+  app.use('/users', usersRouter);
   
   exports.default = app;
 }());
