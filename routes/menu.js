@@ -3,14 +3,16 @@ const router = express.Router();
 
 //const logger = require('./../logger');
 
-router.get('/getall', (req, res, next) => {
-  res.json({ message: 'getall' });
-});
 
-/*
 const authHelpers = require('../auth/_helpers');
 const db = require('./../db');
 
+
+
+router.get('/getall', (req, res, next) => {
+  res.json({ message: 'getall' });
+});
+/*
 router.get('/getall', (req, res, next) => {
   db.menu.getAll(
     (err, menu) => {
