@@ -6,6 +6,7 @@ exports.data = getData();
 
 exports.getAll = function(done) {
   return getData()
+    .orderBy('Name')
     .then(res => {
       return done(null, res || []);
     })
@@ -14,35 +15,50 @@ exports.getAll = function(done) {
     });
 };
 
+exports.new = function(menuItem, done) {
+  return getData()
+    .insert(menuItem)
+    .returning('Id')
+    .then(res => {
+      return done(null, res);
+    }).catch((err) => {
+      return done(err);
+    });
+};
+
 exports.save = function(menuItem, done) {
-  return menuItem.id ?
-      getData()
-      .where({
-        id: menuItem.id
-      })
-      .update(menuItem)
-      .then(item => {
-        if (!item) {
-          throw {
-            message: 'Позиция меню не найдена!'
-          };
-        }
+  return getData()
+    .where({
+      Id: menuItem.Id
+    })
+    .update(menuItem)
+    .then(item => {
+      if (!item) {
+        throw {
+          message: 'Позиция меню не найдена!'
+        };
+      }
 
-        return done(null, item);
-      })
-      .catch((err) => {
-        return done(err);
-      })
-    :
-      getData()
-      .insert(menuItem)
-      .then(res => {
-        return done(null, res);
-      }).catch((err) => {
-        return done(err);
-      });
-}
+      return done(null, item);
+    })
+    .catch((err) => {
+      return done(err);
+    });
+};
 
+exports.delete = function(id, done) {
+  return getData()
+    .where({
+      Id: id
+    })
+    .delete()
+    .then(() => {
+      return done();
+    })
+    .catch((err) => {
+      return done(err);
+    });
+};
 
 // private
 function getData() {

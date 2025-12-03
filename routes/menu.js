@@ -35,9 +35,11 @@ router.post('/save', (req, res, next) => {
     });
 });
 
-router.post('/delete', (req, res, next) => {
-  db.menu.delete(
-    req.body.id,
+router.post('/new', (req, res, next) => {
+  var entity = req.body;
+  delete entity.Id;
+  db.menu.new(
+    entity,
     (err, profile) => {
       if (err) {
         handleResponse(res, 500, err);
@@ -47,6 +49,20 @@ router.post('/delete', (req, res, next) => {
       if (profile) {
         handleSuccess(res);
       }
+    });
+});
+
+router.post('/delete', (req, res, next) => {
+  var entity = req.body;
+  db.menu.delete(
+    entity.Id,
+    (err) => {
+      if (err) {
+        handleResponse(res, 500, err);
+        return;
+      }
+
+      handleSuccess(res);
     });
 });
 
@@ -61,4 +77,4 @@ function handleSuccess(res) {
   res.status(200).json({});
 }
   
-  module.exports = router;
+module.exports = router;
