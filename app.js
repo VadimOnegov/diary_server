@@ -13,16 +13,8 @@
 
   // *** config *** //
   //appConfig.init(app, express);
-  //routeConfig.init(app);
+  routeConfig.init(app);
   //errorConfig.init(app);
-
-  app.get('/', (req, res) => {
-    res.send('Welcome to the API!');
-  });
-
-  const usersRouter = require('./routes/users.js'); // Import your user router
-
-  app.use('/users', usersRouter);
   
   exports.default = app;
 }());
