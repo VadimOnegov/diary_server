@@ -12,9 +12,12 @@
   const app = express();
 
   // *** config *** //
-  appConfig.init(app, express);
-  routeConfig.init(app);
-  errorConfig.init(app);
+  //appConfig.init(app, express);
+  //routeConfig.init(app);
+  //errorConfig.init(app);
+  app.get('/', (req, res) => {
+    res.json({ message: 'Hello from Express on Vercel!' });
+  });
 
   exports.default = app;
 }());
