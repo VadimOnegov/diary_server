@@ -12,9 +12,9 @@
   const app = express();
 
   // *** config *** //
-  //appConfig.init(app, express);
+  appConfig.init(app, express);
   routeConfig.init(app);
-  //errorConfig.init(app);
+  errorConfig.init(app);
   
   exports.default = app;
 }());
