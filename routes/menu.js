@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+/*
 const logger = require('./../logger');
 
 const authHelpers = require('../auth/_helpers');
@@ -76,5 +76,5 @@ function handleResponse(res, code, statusMsg) {
 function handleSuccess(res) {
   res.status(200).json({});
 }
-  
+  */
 module.exports = router;

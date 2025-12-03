@@ -6,6 +6,6 @@ exports.init = function(app) {
 
   // *** register routes *** //
   app.use('/', routes);
-  //app.use('/menu', menuRoutes);
+  app.use('/menu', menuRoutes);
   //app.use('/days', daysRoutes);
 }
