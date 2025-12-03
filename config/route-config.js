@@ -1,7 +1,7 @@
 exports.init = function(app) {
   // *** routes *** //
   const routes = require('../routes/index');
-  //const menuRoutes = require('../routes/menu');
+  const menuRoutes = require('../routes/menu');
   //const daysRoutes = require('../routes/days');
 
   // *** register routes *** //

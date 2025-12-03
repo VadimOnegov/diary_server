@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const logger = require('./../logger');
+
+router.get('/getall', (req, res, next) => {
+  res.json({ message: 'getall' });
+});
+
 /*
 const authHelpers = require('../auth/_helpers');
 const db = require('./../db');
