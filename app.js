@@ -12,9 +12,13 @@
   const app = express();
 
   // *** config *** //
-  appConfig.init(app, express);
-  routeConfig.init(app);
-  errorConfig.init(app);
+  //appConfig.init(app, express);
+  //routeConfig.init(app);
+  //errorConfig.init(app);
+
+  app.get('/', (req, res) => {
+    res.send('Welcome to the API!');
+  });
   
   exports.default = app;
 }());
