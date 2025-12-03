@@ -20,7 +20,7 @@
     res.send('Welcome to the API!');
   });
 
-  const usersRouter = require('./users'); // Import your user router
+  const usersRouter = require('./routes/users.js'); // Import your user router
 
   app.use('/users', usersRouter);
   
