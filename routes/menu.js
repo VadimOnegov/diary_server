@@ -7,12 +7,6 @@ const router = express.Router();
 const authHelpers = require('../auth/_helpers');
 const db = require('./../db');
 
-
-
-router.get('/getall', (req, res, next) => {
-  res.json({ message: 'getall' });
-});
-/*
 router.get('/getall', (req, res, next) => {
   db.menu.getAll(
     (err, menu) => {
@@ -74,7 +68,7 @@ router.post('/delete', (req, res, next) => {
 });
 
 function handleResponse(res, code, statusMsg) {
-  logger.warn(statusMsg);
+  //logger.warn(statusMsg);
   res.status(code).json({
     status: statusMsg
   });
@@ -83,5 +77,5 @@ function handleResponse(res, code, statusMsg) {
 function handleSuccess(res) {
   res.status(200).json({});
 }
-  */
+
 module.exports = router;
