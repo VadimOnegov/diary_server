@@ -1,20 +1,19 @@
-(function() {
-  'use strict';
 
-  // Зависимости
-  const express = require('express');
+import express from 'express';
+import appConfig from './config/main-config.js';
+import routeConfig from './config/route-config.js';
+import errorConfig from './config/error-config.js';
 
-  const appConfig = require('./config/main-config.js');
-  const routeConfig = require('./config/route-config.js');
-  const errorConfig = require('./config/error-config.js');
+const app = express();
 
-  // *** express instance *** //
-  const app = express();
+// *** config *** //
+//appConfig.init(app, express);
+//routeConfig.init(app);
+//errorConfig.init(app);
 
-  // *** config *** //
-  appConfig.init(app, express);
-  routeConfig.init(app);
-  errorConfig.init(app);
-
-  module.exports = app;
-}());
+app.get('/', (req, res) => {
+  res.json({ message: 'Hello from Express on Vercel!' });
+});
+ 
+// Export the Express app
+export default app;
