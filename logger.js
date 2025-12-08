@@ -7,6 +7,6 @@ logger.addHandler(new logger.handlers.File({
     format: '[%(date)s] %(levelname)s: %(message)s'
   })
 }));
-logger.addHandler(new logger.handlers.Console());
+//logger.addHandler(new logger.handlers.Console());
 
 module.exports = logger;

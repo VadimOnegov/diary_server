@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-//const logger = require('./../logger');
+const logger = require('./../logger');
 
 const authHelpers = require('../auth/_helpers');
 const db = require('./../db');
@@ -214,7 +214,7 @@ router.post('/calculateActiveInsulin', async (req, res, next) => {
 });
 
 function handleResponse(res, code, statusMsg) {
-  //logger.warn(statusMsg);
+  logger.warn(statusMsg);
   res.status(code).json({
     status: statusMsg
   });
