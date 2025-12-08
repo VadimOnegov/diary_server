@@ -204,46 +204,52 @@ exports.getAll = function(done) {
         return done(null, []);
       }
 
-      let days = [];
-      let currentDay = {};
-      let currentParentRecord = {};
-      let currentRecord = {};
-      for (let i = 0; i < res.rows.length; i++) {
-        var row = res.rows[i];
-        if (row.DayId != currentDay.Id) {
-          currentDay = {
-            Id: row.DayId,
-            DayDate: row.DayDate.toLocaleDateString('ru-Ru'),
-            DiaryRecords: []
-          };
+      try
+      {
+        let days = [];
+        let currentDay = {};
+        let currentParentRecord = {};
+        let currentRecord = {};
+        for (let i = 0; i < res.rows.length; i++) {
+          var row = res.rows[i];
+          if (row.DayId != currentDay.Id) {
+            currentDay = {
+              Id: row.DayId,
+              DayDate: row.DayDate.toLocaleDateString('ru-Ru'),
+              DiaryRecords: []
+            };
 
-          days.push(currentDay);
-        }
-        
-        if (row.Id) {
-          if (currentRecord.Id != row.Id) {
-            currentRecord = rowToDiaryRecord(row);
-            if (row.ParentId === null) {
-              currentParentRecord = currentRecord
-              currentDay.DiaryRecords.push(currentRecord);
-            } else {
-              if (currentParentRecord.Id !== currentRecord.ParentId) {
-                currentParentRecord = currentDay.DiaryRecords.find((item) => item.Id === currentRecord.ParentId);
-              }
+            days.push(currentDay);
+          }
+          
+          if (row.Id) {
+            if (currentRecord.Id != row.Id) {
+              currentRecord = rowToDiaryRecord(row);
+              if (row.ParentId === null) {
+                currentParentRecord = currentRecord
+                currentDay.DiaryRecords.push(currentRecord);
+              } else {
+                if (currentParentRecord.Id !== currentRecord.ParentId) {
+                  currentParentRecord = currentDay.DiaryRecords.find((item) => item.Id === currentRecord.ParentId);
+                }
 
-              if (currentParentRecord) {
-                currentParentRecord.DiaryRecords.push(currentRecord);
+                if (currentParentRecord) {
+                  currentParentRecord.DiaryRecords.push(currentRecord);
+                }
               }
             }
-          }
 
-          if (row.EatingId) {
-            currentRecord.Eating.push(rowToEatingRecord(row));
+            if (row.EatingId) {
+              currentRecord.Eating.push(rowToEatingRecord(row));
+            }
           }
         }
-      }
 
-      return done(null, days);
+        return done(null, days);
+      }
+      catch(e) {
+        return done(e);
+      }
     })
     .catch((err) => {
       return done(err);
