@@ -16,6 +16,10 @@ exports.addDay = function(day, done) {
     });
 };
 
+exports.deleteDay = async function(id, done) {
+  await knex('Days').where({ Id: id }).delete();
+};
+
 exports.newRecord = function(record, done) {
   record.DateTime = new Date();
   return knex('DiaryRecord')

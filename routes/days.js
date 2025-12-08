@@ -23,6 +23,16 @@ router.post('/addDay', (req, res, next) => {
     });
 });
 
+router.post('/deleteDay', async (req, res, next) => {
+  try {
+    var entity = req.body;
+    await db.days.deleteDay(entity.Id);
+    handleSuccess(res);
+  } catch (e) {
+    handleResponse(res, 500, e);
+  }
+});
+
 router.get('/getall', (req, res, next) => {
   db.days.getAll(
     (err, days) => {
@@ -260,6 +270,13 @@ function getRecordFromBody(req) {
     ActiveInsulin: req.body.ActiveInsulin,
     StartEat: req.body.StartEat,
     Pause: req.body.Pause,
+  };
+};
+
+function getDayFromBody(req) {
+  return {
+    Id: req.body.Id,
+    DayDate: req.body.DayDate,
   };
 };
   
