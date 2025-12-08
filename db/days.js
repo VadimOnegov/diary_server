@@ -220,7 +220,7 @@ exports.getAll = function(done) {
           days.push(currentDay);
         }
         
-        if (row.Id !== null) {
+        if (row.Id) {
           if (currentRecord.Id != row.Id) {
             currentRecord = rowToDiaryRecord(row);
             if (row.ParentId === null) {
